@@ -1,8 +1,8 @@
 # TFN Validator
-A tool to validate Tax File Numbers (TFN) as provided by the Australian Taxation Office
+A tool to validate Tax File Numbers (TFN) as provided by the Australian Taxation Office.
 
 ### Why?
-I needed to validate a tax file number before entering it into a document, and couldn't find one online. The format is well known, so I made a validator. Now you too can validate TFNs, even just for fun if you like :)
+I needed to validate a TFN before entering it into a document, and couldn't find one online. The format is well known, so I made a validator. Now you too can validate TFNs, even just for fun if you like, make a day of it.
 
 ## Usage
 Open ````tfn-validator.html```` in your browser, enter the TFN, click <kbd>Validate</kbd> and wait for the magic!
