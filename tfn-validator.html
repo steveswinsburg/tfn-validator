@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>TFN Validator</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	
+	<script>
+	
+	//page load
+	$(function() { 
+		
+		//init
+        $('#result').hide();
+        $('#tfn').val('');
+		
+		//bind the form submit
+		$('#tfn_validator').submit(function(e) {
+			e.preventDefault();
+			
+			//reset the styles
+			$('.form-group').removeClass('has-success');
+			$('.form-group').removeClass('has-error');
+			$('#result').removeClass('bg-success');
+			$('#result').removeClass('bg-danger');
+			
+			var tfn = $('#tfn').val();
+			
+			//remove spaces and update
+			tfn = tfn.replace(/\s+/g, '');
+			$('#tfn').val(tfn);
+			
+			//remove hyphens and update
+			tfn = tfn.replace(/[-]/g, '');
+			$('#tfn').val(tfn);
+			
+			//validate only digits
+			var isNumber = /^[0-9]+$/.test(tfn);
+			if(!isNumber) {
+				return doError('Invalid TFN, only numbers are allowed.');
+			}
+			
+			//validate length
+			var length = tfn.length;
+			if(length != 9) {
+				return doError('Invalid TFN, must have 9 digits.');
+			}
+			
+			var digits = tfn.split('');
+			
+			//do the calcs
+			var sum = (digits[0]*1)
+					+ (digits[1]*4)
+					+ (digits[2]*3)
+					+ (digits[3]*7)
+					+ (digits[4]*5)
+					+ (digits[5]*8)
+					+ (digits[6]*6)
+					+ (digits[7]*9)
+					+ (digits[8]*10);
+			
+			var remainder = sum % 11;
+			
+			if(remainder == 0) {
+				doSuccess('Valid TFN, hooray!');
+			} else {
+				return doError('Invalid TFN, check the digits.');
+			}
+		});
+        
+    });
+    
+    //helper for the error status
+    var doError = function(message) {
+		$('.form-group').addClass('has-error');
+		$('#result').addClass('bg-danger').text(message).show();
+	};
+	
+	//helper for the success status
+	var doSuccess = function(message) {
+		$('.form-group').addClass('has-success');
+		$('#result').addClass('bg-success').text(message).show();
+	};
+		
+	</script>
+	
+	
+	<style type="text/css">
+	
+		body {
+			padding-top: 40px;
+			padding-bottom: 40px;
+			background-color: #eee;
+			text-align: center;
+		}
+	
+		.container {
+			max-width: 330px;
+			padding: 15px;
+			margin: 0 auto;
+		}
+
+		.btn {
+			margin-top: 15px;
+		}
+		
+		.bg-success, .bg-danger {
+			padding: 15px;
+			margin-top: 15px;
+			font-weight: bold;
+		}
+	
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<form id="tfn_validator">
+			<h2>TFN Validator</h2>
+
+			<div class="form-group">
+				<label for="tfn" class="sr-only">TFN</label>
+				<input type="text" id="tfn" size="40" class="form-control input-lg" placeholder="Enter the TFN" autocomplete="off" required autofocus />
+			</div>
+		
+			<p id="result"></p>
+
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Validate</button>
+		
+		</form>
+	  
+	</div>
+</body>
+
+
+
+</html>
