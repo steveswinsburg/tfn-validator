@@ -22,4 +22,5 @@ Therefore, the example TFN '123456782' can be checked by the following process:
 The sum of the numbers is 253 (1 + 8 + 9 + 28 + 25 + 48 + 42 + 72 + 20 = 253). 253 is a multiple of 11 (11 × 23 = 253). Therefore the number is valid.
 
 [1] Management of Tax File Numbers, ANAO, 1999 (ISBN 0 644 38866 8) http://www.anao.gov.au/%7E/media/Uploads/Documents/1998%2099_audit_report_37.pdf
+
 [2] Tax file number, Wikipedia, http://en.wikipedia.org/wiki/Tax_file_number
