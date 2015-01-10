@@ -9,6 +9,11 @@ I needed to validate a TFN before entering it into a document, and couldn't find
 
 Enter the TFN, click <kbd>Validate</kbd> and wait for the magic!
 
+## Privacy
+Privacy is guaranteed. You only need to enter the TFN, which is useless on its own, as its just a number in a certain format. There is absolutely no way that anyone's details can be leaked at all since they arent there to start with.
+
+In addition, the validator stores nothing, it doesn't even make a web request so nothing is sent to any server at all. You can check the source :)
+
 ## The maths
 The TFN validation algorithm is based on simple modulo 11 arithmetic just like many other digit checksum schemes. The weighting algorithm for the TFN is well known[1],[2], with each digit multiplied by the corresponding weighting number.
 
